@@ -21,9 +21,11 @@
             @{
                 foreach (var expenses in Model)
                 {
-                    <td>@expenses.Id</td>
-                    <td>@expenses.Value</td>
-                    <td>@expenses.Desription</td>
+                    <tr>
+                        <td>@expenses.Id</td>
+                        <td>@expenses.Value</td>
+                        <td>@expenses.Desription</td>
+                    </tr>
                 }
             }
         </tbody>
