@@ -14,6 +14,7 @@
                 <th>Id</th>
                 <th>Value</th>
                 <th>Description</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -25,6 +26,10 @@
                         <td>@expenses.Id</td>
                         <td>@expenses.Value</td>
                         <td>@expenses.Desription</td>
+                        <td>
+                            <a asp-controller="Home" asp-action="CreateEditExpenses" asp-route-id="@expenses.Id">Edit</a>
+                            <a asp-controller="Home" asp-action="DeleteExpenses" asp-route-id="@expenses.Id">Delete</a>
+                        </td>
                     </tr>
                 }
             }

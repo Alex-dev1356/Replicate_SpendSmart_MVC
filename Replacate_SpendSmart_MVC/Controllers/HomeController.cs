@@ -33,13 +33,36 @@ public class HomeController : Controller
         var alldata = _context.ExpensesData.ToList();
         return View(alldata);
     }
-    public IActionResult CreateEditExpenses()
+    public IActionResult CreateEditExpenses(int? id)
     {
+        if (id != null)
+        {
+            var expenseInDb = _context.ExpensesData.FirstOrDefault(firstItem => firstItem.Id == id);
+            return View(expenseInDb);
+        }
+
         return View();
     }
     public IActionResult CreateEditExpensesForm(ExpensesModel expensesData)
     {
-        _context.ExpensesData.Add(expensesData);
+        if (expensesData.Id == 0)
+        {
+            _context.ExpensesData.Add(expensesData);
+        }
+        else
+        {
+            _context.ExpensesData.Update(expensesData);
+        }
+
+        _context.SaveChanges();
+
+        return RedirectToAction("Expenses");
+    }
+    public IActionResult DeleteExpenses(int id)
+    {
+        //Selecting the item with the same Id as the id parameter inside the Database and deleting it.
+        var expenseInDb = _context.ExpensesData.FirstOrDefault(firstItem => firstItem.Id == id);
+        _context.ExpensesData.Remove(expenseInDb);
         _context.SaveChanges();
 
         return RedirectToAction("Expenses");
