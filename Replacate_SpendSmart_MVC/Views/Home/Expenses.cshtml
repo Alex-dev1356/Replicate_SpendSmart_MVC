@@ -2,6 +2,30 @@
     ViewData["Title"] = "Expenses";
 }
 
+@* Importing the List oftype ExpensesModel *@
+@model List<ExpensesModel>
+
 <div class="text-center">
     <h1 class="display-4">Expenses</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Value</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @* Rendering all the data here using blazer code and using foreach loop *@
+            @{
+                foreach (var expenses in Model)
+                {
+                    <td>@expenses.Id</td>
+                    <td>@expenses.Value</td>
+                    <td>@expenses.Desription</td>
+                }
+            }
+        </tbody>
+    </table>
 </div>

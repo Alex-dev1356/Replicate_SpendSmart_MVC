@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.EntityFrameworkCore;
 using Replacate_SpendSmart_MVC.Models;
 
@@ -28,7 +29,9 @@ public class HomeController : Controller
     }
     public IActionResult Expenses()
     {
-        return View();
+        //Putting all the data in a list and displaying it on Expenses.cshtml
+        var alldata = _context.ExpensesData.ToList();
+        return View(alldata);
     }
     public IActionResult CreateEditExpenses()
     {
