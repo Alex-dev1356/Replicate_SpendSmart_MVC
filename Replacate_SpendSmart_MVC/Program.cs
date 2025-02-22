@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Replacate_SpendSmart_MVC.Models;
+
 namespace Replacate_SpendSmart_MVC
 {
     public class Program
@@ -8,6 +12,9 @@ namespace Replacate_SpendSmart_MVC
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<ExpensesModelDatabase>(options => 
+                options.UseInMemoryDatabase("ExpnsesModelDatabase")
+            );
 
             var app = builder.Build();
 
